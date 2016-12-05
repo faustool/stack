@@ -6,28 +6,36 @@ import (
 )
 
 func TestSimple(t *testing.T) {
-	arrayStack := ArrayStack{make([]string, 0)}
+	arrayStack := ArrayStack{make([]interface{}, 0)}
+
+	value, err := arrayStack.Pop()
+	assert.NotNil(t, err)
+	assert.Nil(t, value)
+
+	value, err = arrayStack.Peak()
+	assert.NotNil(t, err)
+	assert.Nil(t, value)
 
 	arrayStack.Push("element1")
 	arrayStack.Push("element2")
 
-	value, error := arrayStack.Peak()
-	assert.Nil(t, error)
+	value, err = arrayStack.Peak()
+	assert.Nil(t, err)
 	assert.Equal(t, "element2", value)
 
-	value, error = arrayStack.Peak()
-	assert.Nil(t, error)
+	value, err = arrayStack.Peak()
+	assert.Nil(t, err)
 	assert.Equal(t, "element2", value)
 
-	value, error = arrayStack.Pop()
-	assert.Nil(t, error)
+	value, err = arrayStack.Pop()
+	assert.Nil(t, err)
 	assert.Equal(t, "element2", value)
 
-	value, error = arrayStack.Pop()
-	assert.Nil(t, error)
+	value, err = arrayStack.Pop()
+	assert.Nil(t, err)
 	assert.Equal(t, "element1", value)
 
-	value, error = arrayStack.Pop()
-	assert.NotNil(t, error)
-	assert.Equal(t, "", value)
+	value, err = arrayStack.Pop()
+	assert.NotNil(t, err)
+	assert.Nil(t, value)
 }

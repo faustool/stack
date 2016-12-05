@@ -1,38 +1,40 @@
 package stack
 
-import "fmt"
+import (
+	"errors"
+)
 
 type Stack interface {
-	Push(value string)
-	Pop() (string, error)
-	Peak() (string, error)
+	Push(value interface{})
+	Pop() (interface{}, error)
+	Peak() (interface{}, error)
 }
 
 type ArrayStack struct {
-	data []string
+	data [] interface{}
 }
 
-func (stack *ArrayStack) Push(value string) {
+func (stack *ArrayStack) Push(value interface{}) {
 	stack.data = append(stack.data, value)
 }
 
-func (stack *ArrayStack) Pop() (string, error) {
-	len := len(stack.data)
-	if (len == 0) {
-		return "", fmt.Errorf("Cannot Pop from an empty Stack")
+func (stack *ArrayStack) Pop() (interface{}, error) {
+	length := len(stack.data)
+	if (length == 0) {
+		return nil, errors.New("Cannot Pop from an empty Stack")
 	} else {
-		lastIndex := len - 1
+		lastIndex := length - 1
 		last := stack.data[lastIndex]
 		stack.data = stack.data[:lastIndex]
 		return last, nil
 	}
 }
 
-func (stack ArrayStack) Peak() (string, error) {
-	len := len(stack.data)
-	if (len == 0) {
-		return "", fmt.Errorf("Cannot Peak from an empty Stack")
+func (stack ArrayStack) Peak() (interface{}, error) {
+	length := len(stack.data)
+	if (length == 0) {
+		return nil, errors.New("Cannot Peak from an empty Stack")
 	} else {
-		return stack.data[len -1], nil
+		return stack.data[length -1], nil
 	}
 }
