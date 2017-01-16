@@ -6,7 +6,7 @@ import (
 )
 
 func TestSimple(t *testing.T) {
-	arrayStack := ArrayStack{make([]interface{}, 0)}
+	arrayStack := NewStack()
 
 	value, err := arrayStack.Pop()
 	assert.NotNil(t, err)

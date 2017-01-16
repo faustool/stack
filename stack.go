@@ -14,6 +14,10 @@ type ArrayStack struct {
 	data [] interface{}
 }
 
+func NewStack() Stack {
+	return &ArrayStack{make([]interface{}, 0)}
+}
+
 func (stack *ArrayStack) Push(value interface{}) {
 	stack.data = append(stack.data, value)
 }
