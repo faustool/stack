@@ -6,36 +6,36 @@ import (
 )
 
 func TestSimple(t *testing.T) {
-	arrayStack := NewStack()
+	stack := NewStack()
 
-	value, err := arrayStack.Pop()
+	value, err := stack.Pop()
 	assert.NotNil(t, err)
 	assert.Nil(t, value)
 
-	value, err = arrayStack.Peak()
+	value, err = stack.Peek()
 	assert.NotNil(t, err)
 	assert.Nil(t, value)
 
-	arrayStack.Push("element1")
-	arrayStack.Push("element2")
+	stack.Push("element1")
+	stack.Push("element2")
 
-	value, err = arrayStack.Peak()
+	value, err = stack.Peek()
 	assert.Nil(t, err)
 	assert.Equal(t, "element2", value)
 
-	value, err = arrayStack.Peak()
+	value, err = stack.Peek()
 	assert.Nil(t, err)
 	assert.Equal(t, "element2", value)
 
-	value, err = arrayStack.Pop()
+	value, err = stack.Pop()
 	assert.Nil(t, err)
 	assert.Equal(t, "element2", value)
 
-	value, err = arrayStack.Pop()
+	value, err = stack.Pop()
 	assert.Nil(t, err)
 	assert.Equal(t, "element1", value)
 
-	value, err = arrayStack.Pop()
+	value, err = stack.Pop()
 	assert.NotNil(t, err)
 	assert.Nil(t, value)
 }

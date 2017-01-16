@@ -7,7 +7,7 @@ import (
 type Stack interface {
 	Push(value interface{})
 	Pop() (interface{}, error)
-	Peak() (interface{}, error)
+	Peek() (interface{}, error)
 }
 
 type ArrayStack struct {
@@ -34,10 +34,10 @@ func (stack *ArrayStack) Pop() (interface{}, error) {
 	}
 }
 
-func (stack ArrayStack) Peak() (interface{}, error) {
+func (stack ArrayStack) Peek() (interface{}, error) {
 	length := len(stack.data)
 	if (length == 0) {
-		return nil, errors.New("Cannot Peak from an empty Stack")
+		return nil, errors.New("Cannot Peek from an empty Stack")
 	} else {
 		return stack.data[length -1], nil
 	}
